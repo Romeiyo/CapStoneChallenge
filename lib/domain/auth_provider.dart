@@ -8,18 +8,18 @@ class AuthProvider extends ChangeNotifier {
 
   String? _errorMessage;
 
-  AuthProvider(this._authService);
-
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
   bool get hasError => _errorMessage != null;
   String? get userEmail => _authService.currentUser?.email;
   String? get userId => _authService.currentUser?.uid;
 
-  String get displayName {
-    if (userEmail == null) return 'User';
-    return userEmail!.split('@').first;
-  }
+  AuthProvider(this._authService);
+
+  // String get displayName {
+  //   if (userEmail == null) return 'User';
+  //   return userEmail!.split('@').first;
+  // }
 
   void clearError() {
     _errorMessage = null;
@@ -32,10 +32,10 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final user = await _authService.register(email, password);
-      return user != null;
+      await _authService.register(email, password);
+      return true;
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = e.toString().replaceFirst('Exception: ', '');
       return false;
     } finally {
       _isLoading = false;
@@ -49,10 +49,10 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final user = await _authService.login(email, password);
-      return user != null;
+      await _authService.login(email, password);
+      return true;
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = e.toString().replaceFirst('Exception: ', '');
       return false;
     } finally {
       _isLoading = false;
@@ -61,15 +61,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> logout() async {
-    _isLoading = true;
-    notifyListeners();
-
-    try {
-      await _authService.logout();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+    await _authService.logout();
   }
 
   Future<bool> resetPassword(String email) async {

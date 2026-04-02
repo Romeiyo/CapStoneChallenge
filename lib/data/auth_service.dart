@@ -11,25 +11,25 @@ class AuthService {
 
   Future<User?> register(String email, String password) async {
     try {
-      final userCredential = await _auth.createUserWithEmailAndPassword(
+      final credential = await _auth.createUserWithEmailAndPassword(
         email: email.trim(),
         password: password,
       );
-      return userCredential.user;
+      return credential.user;
     } on FirebaseAuthException catch (e) {
       throw Exception(_mapAuthError(e.code));
     } catch (e) {
-      throw Exception('Authentication failed. Please try again.');
+      throw Exception('Registration failed. Please try again.');
     }
   }
 
   Future<User?> login(String email, String password) async {
     try {
-      final userCredential = await _auth.signInWithEmailAndPassword(
+      final credential = await _auth.signInWithEmailAndPassword(
         email: email.trim(),
         password: password,
       );
-      return userCredential.user;
+      return credential.user;
     } on FirebaseAuthException catch (e) {
       throw Exception(_mapAuthError(e.code));
     } catch (e) {
@@ -51,15 +51,15 @@ class AuthService {
     }
   }
 
-  Future<bool> checkSessionValidity() async {
-    try {
-      await _auth.currentUser?.reload();
-      return true;
-    } catch (e) {
-      await logout();
-      return false;
-    }
-  }
+  // Future<bool> checkSessionValidity() async {
+  //   try {
+  //     await _auth.currentUser?.reload();
+  //     return true;
+  //   } catch (e) {
+  //     await logout();
+  //     return false;
+  //   }
+  // }
 
   String _mapAuthError(String code) {
     switch (code) {

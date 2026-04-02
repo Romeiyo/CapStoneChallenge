@@ -88,7 +88,7 @@ class _HomepageState extends State<Homepage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Consumer<AuthProvider>(
               builder: (context, auth, child) {
@@ -134,7 +134,7 @@ class _HomepageState extends State<Homepage> {
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               weatherProvider.errorMessage!,
@@ -176,9 +176,8 @@ class _HomepageState extends State<Homepage> {
                       : (weather.temperature * 9 / 5) + 32;
 
                   return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // The existing weather data row
                       Row(
                         children: [
                           Icon(
@@ -189,7 +188,7 @@ class _HomepageState extends State<Homepage> {
                           const SizedBox(width: 16),
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   '${displayTemp.toStringAsFixed(1)}$tempUnit — ${weather.condition}',
