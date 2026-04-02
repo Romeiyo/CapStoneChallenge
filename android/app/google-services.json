@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "322972685596",
+    "project_id": "inclasschallenge",
+    "storage_bucket": "inclasschallenge.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322972685596:android:8300b5f1903ab5461ed6d9",
+        "android_client_info": {
+          "package_name": "com.example.geo_weather_logger_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVto5qjYSYVFtZCUwirUmkJK_X0z7P7HI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
